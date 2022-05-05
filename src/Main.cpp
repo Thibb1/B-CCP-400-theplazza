@@ -5,9 +5,13 @@
 ** main
 */
 
-#include "Plazza.hpp"
+#include "plazza.hpp"
 
 int main(int ac, char **av)
 {
-    return 84;
+    try {
+
+    } catch(std::exception &e) {
+        std::cout << "The Plazza terminated with an exception:\n" << e.what() << std::endl;
+    }
 }
