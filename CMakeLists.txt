@@ -5,8 +5,8 @@ add_compile_options(-Wall -Wextra -fpermissive)
 add_executable(plazza
     src/Main.cpp
     src/RegexUtils.cpp
-    src/Reception.cpp
-    src/Parse.cpp)
+    src/Parse.cpp
+    src/Reception.cpp)
 target_include_directories(plazza PUBLIC includes)
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_SOURCE_DIR}/plazza)
 add_custom_command(TARGET plazza POST_BUILD COMMAND cp plazza ${PROJECT_SOURCE_DIR})

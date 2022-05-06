@@ -5,8 +5,7 @@
 ** plazza
 */
 
-#include "plazza.hpp"
-
+#include "Plazza.hpp"
 plazza::plazza(/* args */)
 {
     std::thread first ();

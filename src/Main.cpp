@@ -6,6 +6,7 @@
 */
 
 #include "Plazza.hpp"
+#include "Reception.hpp"
 
 void readline()
 {
@@ -32,7 +33,8 @@ void readline()
 int main(int ac, char **av)
 {
     try {
-        throw PlazzaError();
+        Reception reception(ac, av);
+        reception.run();
     } catch (PlazzaError &Error) {
         std::cout << Error.what() << std::endl;
         return EXIT_ERROR;

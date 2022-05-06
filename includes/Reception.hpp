@@ -6,10 +6,11 @@
 */
 
 #pragma once
-#include "Plazza.hpp"
+#include "Parse.hpp"
 
 class Reception : public Parse {
 public:
-    Reception() = default;
+    Reception(int ac, char **av) : Parse(ac, av) {}
     ~Reception() = default;
+    void run();
 };
