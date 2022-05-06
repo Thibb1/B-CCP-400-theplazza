@@ -23,6 +23,8 @@ std::smatch RegUtils::getMatch(std::string const &str, std::string const &patter
 
 std::string RegUtils::removeSpaces(std::string const &str)
 {
-    std::regex reg("\\s*");
-    return std::regex_replace(str, reg, "");
+    std::regex reg("(\\s)\\s*");
+    return std::regex_replace(str, reg, " ");
 }
+//([a-zA-Z]+(S|M|L|XL|XXL)x\d+;{0,1})+
+//(([[:alpha:]]+)(?:XXL|XL|X|M|S)x\d+(?:;|\n))

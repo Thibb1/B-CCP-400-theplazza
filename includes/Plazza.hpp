@@ -11,4 +11,8 @@
 #include <regex>
 #include <iostream>
 
+#include "PlazzaError.hpp"
 #include "RegexUtils.hpp"
+
+#define MATCH "(?: *([[:alpha:]]+) (S|M|L|XL|XXL) x(\\d+))"
+#define EXIT_ERROR 84
