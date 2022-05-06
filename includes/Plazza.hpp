@@ -12,7 +12,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <thread>
-#include <boost/regex.hpp>
+#include <mutex>
 
 #include "PlazzaError.hpp"
 #include "RegexUtils.hpp"
