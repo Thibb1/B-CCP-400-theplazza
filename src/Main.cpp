@@ -6,10 +6,15 @@
 */
 
 #include "Plazza.hpp"
+#include <stdexcept>
 #include "Reception.hpp"
 
 int main(int ac, char **av)
 {
+    float cookingTime;
+    int nbCooks;
+    int time;
+
     try {
         Reception reception(ac, av);
         reception.run();

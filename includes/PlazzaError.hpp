@@ -25,9 +25,9 @@ public:
         PlazzaError(std::move(Message)) {}
 };
 
-class ArcadeRuntimeError : public PlazzaError {
+class PlazzaRuntimeError : public PlazzaError {
 public:
-    explicit ArcadeRuntimeError(Error Message = "A runtime error occurred") :
+    explicit PlazzaRuntimeError(Error Message = "A runtime error occurred") :
         PlazzaError(std::move(Message)) {}
 };
 

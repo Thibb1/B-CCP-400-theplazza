@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <regex>
+
 class RegUtils {
 public:
     RegUtils() = default;
