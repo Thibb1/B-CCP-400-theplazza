@@ -5,13 +5,26 @@
 ** main
 */
 
-#include "plazza.hpp"
+#include "Plazza.hpp"
+#include <stdexcept>
 
 int main(int ac, char **av)
 {
-    try {
+    float cookingTime;
+    int nbCooks;
+    int time;
 
-    } catch(std::exception &e) {
-        std::cout << "The Plazza terminated with an exception:\n" << e.what() << std::endl;
+    try {
+        cookingTime = std::stof(av[1]);
+        nbCooks = std::stoi(av[2]);
+        time = std::stoi(av[3]);
+    } catch(const std::exception &exception) {
+        std::cerr << "Plazza terminated with an exception: " << exception.what() << std::endl;  
     }
+    plazza::Pizza pizza(plazza::Fantasia, plazza::M);
+
+    for (auto ingredient : pizza.ingredients) {
+        std::cout << ingredient << std::endl;
+    }
+    return 0;
 }

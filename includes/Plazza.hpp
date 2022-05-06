@@ -12,3 +12,17 @@
 #include <iostream>
 
 #include "RegexUtils.hpp"
+#include "Pizza.hpp"
+
+namespace plazza {
+
+class Plazza {
+    private:
+        float cookingTime;
+        uint32_t nbCooks;
+        uint32_t time;
+    public:
+        Plazza(float cookingTime, uint32_t nbCooks, uint32_t time);
+};
+
+}

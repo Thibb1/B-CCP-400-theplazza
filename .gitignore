@@ -1,3 +1,5 @@
 *.o
 plazza
 build
+.idea
+bootstrap

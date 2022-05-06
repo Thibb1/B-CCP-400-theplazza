@@ -4,6 +4,8 @@ set(CMAKE_CXX_STANDARD 20)
 add_compile_options(-Wall -Wextra -fpermissive)
 add_executable(plazza
         src/Main.cpp
+        src/Plazza.cpp
+        src/Pizza.cpp
         src/RegexUtils.cpp)
 target_include_directories(plazza PUBLIC includes)
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_SOURCE_DIR}/plazza)
