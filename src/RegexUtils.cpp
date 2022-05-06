@@ -27,6 +27,20 @@ stringV RegUtils::getMatch(std::string const &str, std::string const &pattern)
     return res;
 }
 
+std::smatch RegUtils::getSmatch(std::string const &str, std::string const &pattern)
+{
+    //stringV res;
+    //std::string::const_iterator text_iter = str.cbegin();
+    std::smatch match;
+    std::regex reg(pattern);
+    std::regex_match(str, match, reg);
+    //while (std::regex_match(text_iter, str.end(), match, reg)) {
+    //    res.push_back(match[0]);
+    //}
+    // std::regex_search(str, match, reg);
+    return match;
+}
+
 
 //compiledRegex = std::regex(regex, std::tr1::regex_constants::extended);
 //
@@ -47,7 +61,7 @@ stringV RegUtils::getMatch(std::string const &str, std::string const &pattern)
 
 std::string RegUtils::removeSpaces(std::string const &str)
 {
-    std::regex reg("(\\s)(\\s)*");
+    std::regex reg("\\s{1,}");
     return std::regex_replace(str, reg, " ");
 }
 //([a-zA-Z]+(S|M|L|XL|XXL)x\d+;{0,1})+

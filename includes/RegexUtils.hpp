@@ -19,5 +19,6 @@ public:
     ~RegUtils() = default;
     static bool isMatch(std::string const &s, std::string const &r);
     static stringV getMatch(std::string const &s, std::string const &r);
+    static std::smatch getSmatch(std::string const &s, std::string const &r);
     static std::string removeSpaces(std::string const &str);
 };
