@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <regex>
 #include <string>
 #include <iostream>
 #include <cstdio>
@@ -18,7 +19,7 @@
 #include "RegexUtils.hpp"
 #include "Pizza.hpp"
 
-#define MATCH "((?i)regina|margarita|americana|fantasia) (XXL|XL|X|M|S) x([1-9]\\d*)"
+#define MATCH "([[:alpha:]]+ (?:XXL|XL|X|M|S) x[1-9]\\d*)"
 #define EXIT_ERROR 84
 
 namespace plazza {
