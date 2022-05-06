@@ -12,6 +12,8 @@ class Mutex {
     public:
         Mutex();
         virtual ~Mutex() = default;
+        void Lock();
+        void Unlock();
 };
 
 #endif /* !MUTEX_HPP_ */

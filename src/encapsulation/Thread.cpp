@@ -7,6 +7,22 @@
 
 #include "Thread.hpp"
 
-Thread::Thread()
+Thread::Thread(std::thread thread)
 {
+    Swap(thread);
+}
+
+void Thread::Swap(std::thread thread)
+{
+    _Thread.swap(thread);
+}
+
+void Thread::Join()
+{
+    _Thread.join();
+}
+
+void Thread::Detach()
+{
+    _Thread.detach();
 }
