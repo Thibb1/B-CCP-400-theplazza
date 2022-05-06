@@ -8,13 +8,13 @@
 #pragma once
 
 #include <string>
-#include <regex>
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <boost/regex.hpp>
 
 #include "PlazzaError.hpp"
 #include "RegexUtils.hpp"
 
-#define MATCH "(?: *([[:alpha:]]+) (S|M|L|XL|XXL) x(\\d+))"
+#define MATCH "((?i)regina|margarita|americana|fantasia) (XXL|XL|X|M|S) x([1-9]\\d*)"
 #define EXIT_ERROR 84
