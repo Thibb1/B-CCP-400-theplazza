@@ -5,7 +5,11 @@
 ** TODO
 */
 
-#ifndef PLAZZA_RECEPTION_HPP
-#define PLAZZA_RECEPTION_HPP
+#pragma once
+#include "Plazza.hpp"
 
-#endif
+class Reception : public Parse {
+public:
+    Reception() = default;
+    ~Reception() = default;
+};
