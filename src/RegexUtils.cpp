@@ -19,6 +19,7 @@ stringV RegUtils::getMatch(std::string const &str, std::string const &pattern)
     std::string::const_iterator text_iter = str.cbegin();
     std::smatch match;
     std::regex reg(pattern, std::regex::extended);
+
     while (std::regex_match(text_iter, str.end(), match, reg)) {
         res.push_back(match[0]);
     }
@@ -46,7 +47,7 @@ stringV RegUtils::getMatch(std::string const &str, std::string const &pattern)
 
 std::string RegUtils::removeSpaces(std::string const &str)
 {
-    std::regex reg("(\\s)\\s*");
+    std::regex reg("(\\s)(\\s)*");
     return std::regex_replace(str, reg, " ");
 }
 //([a-zA-Z]+(S|M|L|XL|XXL)x\d+;{0,1})+

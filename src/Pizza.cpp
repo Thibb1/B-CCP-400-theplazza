@@ -37,7 +37,7 @@ std::ostream &operator<<(std::ostream &stream, PizzaType type) {
 
 std::ostream &operator<<(std::ostream &stream, Ingredient ingredient) {
     switch (ingredient) {
-        PRINT_ENUM(Ingredient::Dough)
+        PRINT_ENUM(Ingredient::Doe)
         PRINT_ENUM(Ingredient::Tomato)
         PRINT_ENUM(Ingredient::Gruyere)
         PRINT_ENUM(Ingredient::Ham)
@@ -76,7 +76,7 @@ void IngredientList::initMargaritaIngredients() {
     ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Margarita)];
 
     ingredients.reserve(3);
-    ingredients.push_back(Ingredient::Dough);
+    ingredients.push_back(Ingredient::Doe);
     ingredients.push_back(Ingredient::Tomato);
     ingredients.push_back(Ingredient::Gruyere);
 }
@@ -85,7 +85,7 @@ void IngredientList::initReginaIngredients() {
     ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Regina)];
 
     ingredients.reserve(5);
-    ingredients.push_back(Ingredient::Dough);
+    ingredients.push_back(Ingredient::Doe);
     ingredients.push_back(Ingredient::Tomato);
     ingredients.push_back(Ingredient::Gruyere);
     ingredients.push_back(Ingredient::Ham);
@@ -96,7 +96,7 @@ void IngredientList::initAmericanaIngredients() {
     ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Americana)];
 
     ingredients.reserve(4);
-    ingredients.push_back(Ingredient::Dough);
+    ingredients.push_back(Ingredient::Doe);
     ingredients.push_back(Ingredient::Tomato);
     ingredients.push_back(Ingredient::Gruyere);
     ingredients.push_back(Ingredient::Steak);
@@ -106,7 +106,7 @@ void IngredientList::initFantasiaIngredients() {
     ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Fantasia)];
 
     ingredients.reserve(5);
-    ingredients.push_back(Ingredient::Dough);
+    ingredients.push_back(Ingredient::Doe);
     ingredients.push_back(Ingredient::Tomato);
     ingredients.push_back(Ingredient::Eggplant);
     ingredients.push_back(Ingredient::GoatCheese);

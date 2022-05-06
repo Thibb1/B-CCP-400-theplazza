@@ -7,6 +7,8 @@
 
 #include "Reception.hpp"
 
+namespace plazza {
+
 void Reception::run()
 {
     std::cout << "> ";
@@ -28,7 +30,4 @@ void Reception::run()
     }
 }
 
-void Reception::ManageKitchens()
-{
-    
 }

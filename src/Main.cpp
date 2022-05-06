@@ -11,19 +11,14 @@
 
 int main(int ac, char **av)
 {
-    float cookingTime;
-    int nbCooks;
-    int time;
-
     try {
-        Reception reception(ac, av);
+        plazza::Reception reception(ac, av);
         reception.run();
     } catch (PlazzaError &Error) {
         std::cout << Error.what() << std::endl;
         return EXIT_ERROR;
     } catch(std::exception &Error) {
-        std::cout << "The Plazza terminated with an unhandled exception:\n"
-            << Error.what() << std::endl;
+        std::cout << "The Plazza terminated with an unhandled exception:\n" << Error.what() << std::endl;
         return EXIT_ERROR;
     }
     return EXIT_SUCCESS;

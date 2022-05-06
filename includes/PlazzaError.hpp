@@ -7,6 +7,9 @@
 
 #pragma once
 
+#include <string>
+#include <exception>
+
 typedef std::string Error;
 class PlazzaError : public std::exception {
 private:

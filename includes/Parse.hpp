@@ -10,14 +10,13 @@
 #include "Plazza.hpp"
 
 class Parse {
-
-    public:
+    private:
         double CookingTime;
         long Cooks;
         long RefillTime;
 
     public:
-        Parse(int NbArguments, char **Arguments);
+        Parse(int ac, char **av);
         virtual ~Parse() = default;
-        void CheckArguments(int NbArguments, char **Arguments);
+        void CheckArguments(int ac, char **av);
 };

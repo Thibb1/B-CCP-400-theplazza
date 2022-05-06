@@ -7,24 +7,24 @@
 
 #include "Parse.hpp"
 
-Parse::Parse(int NbArguments, char **Arguments)
+Parse::Parse(int ac, char **av)
 {
-    CheckArguments(NbArguments, Arguments);
+    CheckArguments(ac, av);
 }
 
-void Parse::CheckArguments(int NbArguments, char **Arguments)
+void Parse::CheckArguments(int ac, char **av)
 {
-    char *Ptr;
+    char *ptr;
 
-    if (NbArguments != 4)
+    if (ac != 4)
         throw PlazzaUsageError();
-    CookingTime = strtod(Arguments[1], &Ptr);
-    if (Arguments[1] == Ptr || CookingTime < 0)
+    CookingTime = strtod(av[1], &ptr);
+    if (av[1] == ptr || CookingTime < 0)
         throw PlazzaUsageError();
-    Cooks = strtol(Arguments[2], &Ptr, 10);
-    if (Arguments[2] == Ptr || Cooks < 0)
+    Cooks = strtol(av[2], &ptr, 10);
+    if (av[2] == ptr || Cooks < 0)
         throw PlazzaUsageError();
-    RefillTime = strtol(Arguments[3], &Ptr, 10);
-    if (Arguments[3] == Ptr || RefillTime < 0)
+    RefillTime = strtol(av[3], &ptr, 10);
+    if (av[3] == ptr || RefillTime < 0)
         throw PlazzaUsageError();
 }

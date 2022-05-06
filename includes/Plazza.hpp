@@ -19,8 +19,9 @@
 #include <unistd.h>
 
 #include "PlazzaError.hpp"
-#include "RegexUtils.hpp"
+//#include "RegexUtils.hpp"
 #include "Pizza.hpp"
+#include "Process.hpp"
 
 #define MATCH "([[:alpha:]]+ (?:XXL|XL|X|M|S) x[1-9]\\d*)"
 #define EXIT_ERROR 84

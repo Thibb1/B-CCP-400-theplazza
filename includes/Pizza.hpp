@@ -33,7 +33,7 @@ enum PizzaSize
 
 enum class Ingredient
 {
-    Dough,
+    Doe,
     Tomato,
     Gruyere,
     Ham,
