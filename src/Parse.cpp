@@ -9,7 +9,7 @@
 
 Parse::Parse(int NbArguments, char **Arguments)
 {
-    
+    CheckArguments(NbArguments, Arguments);
 }
 
 int Parse::CheckArguments(int NbArguments, char **Arguments)
