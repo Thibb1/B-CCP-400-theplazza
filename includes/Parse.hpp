@@ -12,9 +12,9 @@
 class Parse {
 
     public:
-        float CookingTime;
-        int Cooks;
-        int RefillTime;
+        double CookingTime;
+        long Cooks;
+        long RefillTime;
 
     public:
         Parse(int NbArguments, char **Arguments);
