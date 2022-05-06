@@ -10,3 +10,13 @@
 Mutex::Mutex()
 {
 }
+
+void Mutex::Lock()
+{
+
+}
+
+void Mutex::Unlock()
+{
+    
+}

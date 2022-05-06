@@ -11,6 +11,7 @@
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
+#include <thread>
 #include <boost/regex.hpp>
 
 #include "PlazzaError.hpp"

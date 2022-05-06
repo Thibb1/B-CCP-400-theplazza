@@ -5,7 +5,6 @@
 ** regex utils
 */
 
-
 #pragma once
 
 class RegUtils {

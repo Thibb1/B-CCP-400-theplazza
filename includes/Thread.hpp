@@ -8,10 +8,18 @@
 #ifndef THREAD_HPP_
 #define THREAD_HPP_
 
+#include <Plazza.hpp>
+
 class Thread {
     public:
-        Thread();
+        std::thread _Thread;
+    
+    public:
+        Thread(std::thread thread);
         virtual ~Thread() = default;
+        void Swap();
+        void Join();
+        void Detach();
 };
 
 #endif /* !THREAD_HPP_ */
