@@ -4,7 +4,6 @@ set(CMAKE_CXX_STANDARD 20)
 add_compile_options(-Wall -Wextra -fpermissive)
 add_executable(plazza
         src/Main.cpp
-        src/Plazza.cpp
         src/Pizza.cpp
         src/RegexUtils.cpp
         src/Parse.cpp

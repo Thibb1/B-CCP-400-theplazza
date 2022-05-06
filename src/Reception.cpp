@@ -27,3 +27,8 @@ void Reception::run()
         std::cout << "> ";
     }
 }
+
+void Reception::ManageKitchens()
+{
+    
+}
