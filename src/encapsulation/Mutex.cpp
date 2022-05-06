@@ -13,10 +13,10 @@ Mutex::Mutex()
 
 void Mutex::Lock()
 {
-
+    _Mutex.lock();
 }
 
 void Mutex::Unlock()
 {
-    
+    _Mutex.unlock();
 }

@@ -7,6 +7,18 @@
 
 #include "Processes.hpp"
 
-Processes::Processes()
+Processes::Processes() : _Pid(fork())
 {
+    if (_Pid < 0)
+        throw PlazzaRuntimeError();
+}
+
+const pid_t &Processes::GetPid()
+{
+    return (_Pid);
+}
+
+void Processes::WaitPid()
+{
+    waitpid(_Pid, &status, WNOHANG);
 }

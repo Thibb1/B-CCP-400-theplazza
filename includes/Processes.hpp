@@ -8,13 +8,18 @@
 #ifndef PROCESSES_HPP_
 #define PROCESSES_HPP_
 
+#include "Plazza.hpp"
+
 class Processes {
+    public:
+        pid_t _Pid;
+        int status;
+
     public:
         Processes();
         virtual ~Processes() = default;
-
-    protected:
-    private:
+        const pid_t &GetPid();
+        void WaitPid();
 };
 
 #endif /* !PROCESSES_HPP_ */
