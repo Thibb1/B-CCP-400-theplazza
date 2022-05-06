@@ -22,7 +22,7 @@ void Reception::run()
         } else if (RegUtils::isMatch(line, "QUIT")) {
             return;
         } else {
-            std::cout << "Wrong typo" << std::endl;
+            std::cout << "ERROR: Wrong pizza command" << std::endl;
         }
         std::cout << "> ";
     }
