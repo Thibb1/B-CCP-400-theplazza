@@ -7,6 +7,7 @@
 
 #include "Plazza.hpp"
 #include <stdexcept>
+#include "Reception.hpp"
 
 int main(int ac, char **av)
 {
@@ -15,16 +16,15 @@ int main(int ac, char **av)
     int time;
 
     try {
-        cookingTime = std::stof(av[1]);
-        nbCooks = std::stoi(av[2]);
-        time = std::stoi(av[3]);
-    } catch(const std::exception &exception) {
-        std::cerr << "Plazza terminated with an exception: " << exception.what() << std::endl;  
+        Reception reception(ac, av);
+        reception.run();
+    } catch (PlazzaError &Error) {
+        std::cout << Error.what() << std::endl;
+        return EXIT_ERROR;
+    } catch(std::exception &Error) {
+        std::cout << "The Plazza terminated with an unhandled exception:\n"
+            << Error.what() << std::endl;
+        return EXIT_ERROR;
     }
-    plazza::Pizza pizza(plazza::Fantasia, plazza::M);
-
-    for (auto ingredient : pizza.ingredients) {
-        std::cout << ingredient << std::endl;
-    }
-    return 0;
+    return EXIT_SUCCESS;
 }
