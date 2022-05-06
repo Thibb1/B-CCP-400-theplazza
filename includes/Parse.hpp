@@ -7,8 +7,17 @@
 
 #pragma once
 
+#include "Plazza.hpp"
+
 class Parse {
-public:
-    Parse() = default;
-    ~Parse() = default;
+
+    public:
+        Parse(int NbArguments, char **Arguments);
+        ~Parse() = default;
+        int CheckArguments(int NbArguments, char **Arguments);
+
+    private:
+        float CookingTime;
+        int Cooks;
+        int RefillTime;
 };

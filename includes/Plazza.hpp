@@ -10,6 +10,8 @@
 #include <string>
 #include <regex>
 #include <iostream>
+#include <cstdio>
+#include <cstdlib>
 
 #include "PlazzaError.hpp"
 #include "RegexUtils.hpp"
