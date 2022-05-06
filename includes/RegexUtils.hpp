@@ -12,13 +12,14 @@
 #include "Plazza.hpp"
 
 typedef std::vector<std::string> stringV;
+typedef std::regex::flag_type flag_type;
 
 class RegUtils {
 public:
     RegUtils() = default;
     ~RegUtils() = default;
-    static bool isMatch(std::string const &s, std::string const &r);
-    static stringV getMatch(std::string const &s, std::string const &r);
-    static std::smatch getSmatch(std::string const &s, std::string const &r);
+    static bool isMatch(std::string const &s, std::string const &r, flag_type flag = std::regex::ECMAScript);
+    static std::smatch getMatch(std::string const &s, std::string const &r);
+    static stringV split(std::string const &s, std::string const &r);
     static std::string removeSpaces(std::string const &str);
 };

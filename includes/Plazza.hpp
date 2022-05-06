@@ -23,5 +23,4 @@
 #include "Pizza.hpp"
 #include "Process.hpp"
 
-#define MATCH "([[:alpha:]]+ (?:XXL|XL|X|M|S) x[1-9]\\d*; ?)*[[:alpha:]]+ (?:XXL|XL|X|M|S) x[1-9]\\d*$"
 #define EXIT_ERROR 84

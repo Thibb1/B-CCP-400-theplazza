@@ -15,8 +15,8 @@ namespace plazza {
 class Reception : public Parse {
     public:
         Reception(int ac, char **av) : Parse(ac, av) {}
-
-        void checkType(PizzaType type);
+        bool ParseCommand(const std::string& line);
+        static void StartReception(const std::string& pizza, const std::string& size, const std::string& number);
         void run();
 };
 
