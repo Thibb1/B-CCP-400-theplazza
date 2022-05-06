@@ -19,5 +19,5 @@ class Parse {
     public:
         Parse(int NbArguments, char **Arguments);
         virtual ~Parse() = default;
-        int CheckArguments(int NbArguments, char **Arguments);
+        void CheckArguments(int NbArguments, char **Arguments);
 };
