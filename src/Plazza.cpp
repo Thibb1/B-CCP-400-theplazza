@@ -11,6 +11,4 @@ namespace plazza {
 
 Plazza::Plazza(float cookingTime, uint32_t nbCooks, uint32_t time) : cookingTime(cookingTime), nbCooks(nbCooks), time(time) {}
 
-
-
 }
