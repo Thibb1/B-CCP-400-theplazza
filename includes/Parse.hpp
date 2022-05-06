@@ -13,7 +13,7 @@ class Parse {
 
     public:
         Parse(int NbArguments, char **Arguments);
-        ~Parse() = default;
+        virtual ~Parse() = default;
         int CheckArguments(int NbArguments, char **Arguments);
 
     private:
