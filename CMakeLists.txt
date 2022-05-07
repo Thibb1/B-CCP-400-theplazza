@@ -7,7 +7,10 @@ add_executable(plazza
         src/Pizza.cpp
         src/RegexUtils.cpp
         src/Parse.cpp
-        src/Process.cpp
+        src/Encapsulation/ConditionnalVariable.cpp
+        src/Encapsulation/Mutex.cpp
+        src/Encapsulation/Process.cpp
+        src/Encapsulation/Thread.cpp
         src/Reception.cpp)
 target_include_directories(plazza PUBLIC includes)
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_SOURCE_DIR}/plazza)

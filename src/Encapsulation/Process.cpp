@@ -7,15 +7,19 @@
 
 #include "Process.hpp"
 
+namespace plazza {
+
 Process::Process() : pid(fork()) {
     if (this->pid < 0)
         throw PlazzaRuntimeError();
 }
 
-pid_t Process::getPid() {
+pid_t Process::GetPid() {
     return this->pid;
 }
 
-void Process::waitPid() {
+void Process::WaitPid() {
     waitpid(this->pid, &status, WNOHANG);
+}
+
 }
