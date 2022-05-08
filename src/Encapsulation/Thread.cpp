@@ -9,7 +9,9 @@
 
 namespace plazza {
 
-Thread::Thread() {}
+Thread::Thread(std::thread t) {
+    this->thread.swap(t);
+}
 
 void Thread::Swap() {
     this->thread.swap(thread);
