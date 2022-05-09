@@ -10,19 +10,19 @@
 namespace plazza {
 
 Thread::Thread(std::thread t) {
-    this->thread.swap(t);
+    thread.swap(t);
 }
 
 void Thread::Swap() {
-    this->thread.swap(thread);
+    thread.swap(thread);
 }
 
 void Thread::Join() {
-    this->thread.join();
+    thread.join();
 }
 
 void Thread::Detach() {
-    this->thread.detach();
+    thread.detach();
 }
 
 }

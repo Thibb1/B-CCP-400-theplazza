@@ -9,6 +9,8 @@
 
 namespace plazza {
 
-ConditionnalVariable::ConditionnalVariable() {}
+ConditionnalVariable::ConditionnalVariable() {
+    
+}
 
 }

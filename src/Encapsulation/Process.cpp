@@ -10,16 +10,16 @@
 namespace plazza {
 
 Process::Process() : pid(fork()) {
-    if (this->pid < 0)
+    if (pid < 0)
         throw PlazzaRuntimeError();
 }
 
 pid_t Process::GetPid() {
-    return this->pid;
+    return pid;
 }
 
 void Process::WaitPid() {
-    waitpid(this->pid, &status, WNOHANG);
+    waitpid(pid, &status, WNOHANG);
 }
 
 }
