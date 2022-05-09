@@ -16,7 +16,8 @@ class Thread {
         std::thread thread;
     
     public:
-        Thread();
+        Thread(std::thread t);
+        virtual ~Thread() = default;
         void Swap();
         void Join();
         void Detach();

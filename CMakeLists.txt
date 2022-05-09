@@ -12,6 +12,6 @@ add_executable(plazza
         src/Encapsulation/Process.cpp
         src/Encapsulation/Thread.cpp
         src/Reception.cpp)
-target_include_directories(plazza PUBLIC includes)
+target_include_directories(plazza PUBLIC includes src/Encapsulation)
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_SOURCE_DIR}/plazza)
 add_custom_command(TARGET plazza POST_BUILD COMMAND cp plazza ${PROJECT_SOURCE_DIR})
