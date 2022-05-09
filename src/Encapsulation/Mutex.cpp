@@ -9,7 +9,7 @@
 
 namespace plazza {
 
-Mutex::Mutex() {}
+Mutex::Mutex() = default;
 
 void Mutex::Lock() {
     mutex.lock();
