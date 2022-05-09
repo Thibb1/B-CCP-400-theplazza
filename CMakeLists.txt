@@ -7,7 +7,7 @@ add_executable(plazza
         src/Pizza.cpp
         src/RegexUtils.cpp
         src/Parse.cpp
-        src/Encapsulation/ConditionnalVariable.cpp
+        src/Encapsulation/ConditionalVariable.cpp
         src/Encapsulation/Mutex.cpp
         src/Encapsulation/Process.cpp
         src/Encapsulation/Thread.cpp

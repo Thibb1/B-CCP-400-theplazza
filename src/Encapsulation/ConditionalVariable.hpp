@@ -12,14 +12,14 @@
 
 namespace plazza {
 
-class ConditionnalVariable {
+class ConditionalVariable {
     public:
         Mutex _mutex;
         std::condition_variable conditionVariable;
 
     public:
-        ConditionnalVariable();
-        virtual ~ConditionnalVariable() = default;
+        ConditionalVariable() = default;
+        virtual ~ConditionalVariable() = default;
         void NotifyOne();
         void NotifyAll();
         void Wait();

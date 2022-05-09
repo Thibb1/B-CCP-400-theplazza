@@ -17,7 +17,7 @@ class Mutex {
         std::unique_lock<std::mutex> mutex;
 
     public:
-        Mutex();
+        Mutex() = default;
         virtual ~Mutex() = default;
         void Lock();
         void Unlock();
