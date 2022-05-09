@@ -18,6 +18,7 @@ class Mutex {
 
     public:
         Mutex();
+        virtual ~Mutex() = default;
         void Lock();
         void Unlock();
 };

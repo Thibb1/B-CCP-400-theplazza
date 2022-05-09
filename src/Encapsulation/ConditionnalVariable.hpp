@@ -7,11 +7,22 @@
 
 #pragma once
 
+#include <condition_variable>
+#include "Mutex.hpp"
+
 namespace plazza {
 
 class ConditionnalVariable {
     public:
+        Mutex _mutex;
+        std::condition_variable conditionVariable;
+
+    public:
         ConditionnalVariable();
+        virtual ~ConditionnalVariable() = default;
+        void NotifyOne();
+        void NotifyAll();
+        void Wait();
 };
 
 }

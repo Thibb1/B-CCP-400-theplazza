@@ -20,6 +20,7 @@ class Process {
 
     public:
         Process();
+        virtual ~Process() = default;
         pid_t GetPid();
         void WaitPid();
 };

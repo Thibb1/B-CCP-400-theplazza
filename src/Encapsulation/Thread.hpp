@@ -21,6 +21,7 @@ class Thread {
         void Swap();
         void Join();
         void Detach();
+        bool Joinable();
 };
 
 }

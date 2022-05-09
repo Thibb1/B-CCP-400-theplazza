@@ -25,4 +25,8 @@ void Thread::Detach() {
     thread.detach();
 }
 
+bool Thread::Joinable() {
+    return thread.joinable();
+}
+
 }

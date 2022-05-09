@@ -13,4 +13,17 @@ ConditionnalVariable::ConditionnalVariable() {
     
 }
 
+void ConditionnalVariable::NotifyOne() {
+    conditionVariable.notify_one();
+}
+
+void ConditionnalVariable::NotifyAll() {
+    conditionVariable.notify_all();
+}
+
+void ConditionnalVariable::Wait() {
+    _mutex.Lock();
+    conditionVariable.wait(_mutex.mutex);
+}
+
 }
