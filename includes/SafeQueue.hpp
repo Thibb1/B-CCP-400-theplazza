@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2022
+** SafeQueue
+** File description:
+** Queue
+*/
+
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -14,24 +21,24 @@ class SafeQueue {
         std::mutex mutex;
     public:
         void push(const Type &value) {
-            std::unique_lock<std::mutex> lock(this->mutex);
-            this->queue.push(value);
+            std::unique_lock<std::mutex> lock(mutex);
+            queue.push(value);
         }
 
         bool tryPop(Type &value) {
-            std::unique_lock<std::mutex> lock(this->mutex);
+            std::unique_lock<std::mutex> lock(mutex);
 
-            if (this->queue.empty()) {
+            if (queue.empty()) {
                 return false;
             } else {
-                value = this->queue.front();
-                this->queue.pop();
+                value = queue.front();
+                queue.pop();
                 return true;
             }
         }
 
         size_t size() {
-            std::unique_lock<std::mutex> lock(this->mutex);
-            return this->queue.size();
+            std::unique_lock<std::mutex> lock(mutex);
+            return queue.size();
         }
 };
