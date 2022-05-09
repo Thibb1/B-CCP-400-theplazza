@@ -7,10 +7,12 @@
 
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <array>
+#include "Plazza.hpp"
+
+#define PRINT_ENUM(Name)\
+    case Name:\
+        stream << #Name;\
+        break;
 
 namespace plazza {
 
@@ -58,20 +60,20 @@ class IngredientList {
         void initReginaIngredients();
         void initAmericanaIngredients();
         void initFantasiaIngredients();
-        static uint32_t pizzaTypeId(PizzaType type);
     public:
         IngredientList();
+        virtual ~IngredientList() = default;
         const ingredient_list &operator[](PizzaType type) const;
 };
 
 class Pizza {
     public:
         Pizza(PizzaType type, PizzaSize size);
-
+        virtual ~Pizza() = default;
     private:
         PizzaType type;
         PizzaSize size;
-        inline static const IngredientList ingredientList;
+        IngredientList ingredientList;
 
     public:
         const IngredientList::ingredient_list &ingredients;

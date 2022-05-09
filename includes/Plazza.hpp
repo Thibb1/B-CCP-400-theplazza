@@ -7,16 +7,23 @@
 
 #pragma once
 
-#include <regex>
-#include <string>
-#include <iostream>
+#include <array>
+#include <csignal>
 #include <cstdio>
 #include <cstdlib>
-#include <thread>
+#include <iostream>
 #include <mutex>
-#include <csignal>
+#include <regex>
+#include <string>
 #include <sys/types.h>
+#include <thread>
 #include <unistd.h>
+#include <unordered_map>
+#include <vector>
+
+#include <algorithm>
+#include <cctype>
+#include <cstring>
 
 #include "PlazzaError.hpp"
 #include "RegexUtils.hpp"

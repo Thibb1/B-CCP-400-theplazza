@@ -9,6 +9,21 @@
 
 namespace plazza {
 
+std::unordered_map<std::string, int> PizzaTypes {
+    {"regina", 1},
+    {"margarita", 2},
+    {"americana", 4},
+    {"fantasia", 8}
+};
+
+std::unordered_map<std::string, int> PizzaSizes {
+    {"S", 1},
+    {"M", 2},
+    {"L", 4},
+    {"XL", 8},
+    {"XXL", 16}
+};
+
 void Reception::run()
 {
     std::cout << "> ";
@@ -53,12 +68,17 @@ bool Reception::ParseCommand(const std::string& line) {
     return false;
 }
 
-void Reception::StartReception(const std::string &pizza,
-                          const std::string &size, const std::string &number)
+void Reception::StartReception(std::string pizza, std::string size, const std::string &number)
 {
+    std::transform(pizza.begin(), pizza.end(), pizza.begin(), ::tolower);
     std::cout << "Pizza: " << pizza << std::endl;
     std::cout << "Size: " << size << std::endl;
     std::cout << "Number: " << number << std::endl;
+    auto _type = static_cast<PizzaType>(PizzaTypes[pizza]);
+    std::cout << "Type: " << _type << std::endl;
+    auto _size = static_cast<PizzaSize>(PizzaSizes[size]);
+    std::cout << "Size: " << _size << std::endl;
+    Pizza a(_type, _size);
 }
 
 }

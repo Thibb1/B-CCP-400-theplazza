@@ -7,11 +7,6 @@
 
 #include "Pizza.hpp"
 
-#define PRINT_ENUM(Name)\
-    case Name:\
-        stream << #Name;\
-        break;
-
 namespace plazza {
 
 std::ostream &operator<<(std::ostream &stream, PizzaSize size) {
@@ -57,23 +52,8 @@ IngredientList::IngredientList() {
     initFantasiaIngredients();
 }
 
-uint32_t IngredientList::pizzaTypeId(PizzaType type) {
-    switch (type) {
-        case PizzaType::Margarita:
-            return 0;
-        case PizzaType::Regina:
-            return 1;
-        case PizzaType::Americana:
-            return 2;
-        case PizzaType::Fantasia:
-            return 3;
-        default:
-            return 0;
-    }
-}
-
 void IngredientList::initMargaritaIngredients() {
-    ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Margarita)];
+    ingredient_list &ingredients = ingredientsByPizzaType[PizzaType::Margarita];
 
     ingredients.reserve(3);
     ingredients.push_back(Ingredient::Doe);
@@ -82,7 +62,7 @@ void IngredientList::initMargaritaIngredients() {
 }
 
 void IngredientList::initReginaIngredients() {
-    ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Regina)];
+    ingredient_list &ingredients = ingredientsByPizzaType[PizzaType::Regina];
 
     ingredients.reserve(5);
     ingredients.push_back(Ingredient::Doe);
@@ -93,7 +73,7 @@ void IngredientList::initReginaIngredients() {
 }
 
 void IngredientList::initAmericanaIngredients() {
-    ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Americana)];
+    ingredient_list &ingredients = ingredientsByPizzaType[PizzaType::Americana];
 
     ingredients.reserve(4);
     ingredients.push_back(Ingredient::Doe);
@@ -103,7 +83,7 @@ void IngredientList::initAmericanaIngredients() {
 }
 
 void IngredientList::initFantasiaIngredients() {
-    ingredient_list &ingredients = this->ingredientsByPizzaType[pizzaTypeId(PizzaType::Fantasia)];
+    ingredient_list &ingredients = ingredientsByPizzaType[PizzaType::Fantasia];
 
     ingredients.reserve(5);
     ingredients.push_back(Ingredient::Doe);
@@ -114,7 +94,7 @@ void IngredientList::initFantasiaIngredients() {
 }
 
 const IngredientList::ingredient_list &IngredientList::operator[](PizzaType type) const {
-    return this->ingredientsByPizzaType[pizzaTypeId(type)];
+    return ingredientsByPizzaType[type];
 }
 
 Pizza::Pizza(PizzaType type, PizzaSize size) : type(type), size(size), ingredients(ingredientList[type]) {}
