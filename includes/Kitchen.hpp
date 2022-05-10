@@ -10,7 +10,5 @@
 class Kitchen {
     public:
         Kitchen();
-
-    protected:
-    private:
+        virtual ~Kitchen() = default;
 };

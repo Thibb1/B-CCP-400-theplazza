@@ -8,6 +8,5 @@
 #include "Kitchen.hpp"
 
 Kitchen::Kitchen()
-{
-    
+{ 
 }
