@@ -25,7 +25,7 @@ void Thread::Detach() {
     thread.detach();
 }
 
-bool Thread::Joinable() {
+bool Thread::Joinable() const {
     return thread.joinable();
 }
 

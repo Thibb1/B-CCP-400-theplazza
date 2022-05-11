@@ -16,12 +16,12 @@ class Thread {
         std::thread thread;
     
     public:
-        Thread(std::thread t);
+        explicit Thread(std::thread t);
         virtual ~Thread() = default;
         void Swap();
         void Join();
         void Detach();
-        bool Joinable();
+        bool Joinable() const;
 };
 
 }

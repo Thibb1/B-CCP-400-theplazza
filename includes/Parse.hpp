@@ -11,9 +11,9 @@
 
 class Parse {
     private:
-        double CookingTime;
-        long Cooks;
-        long RefillTime;
+        double CookingTime{};
+        long Cooks{};
+        long RefillTime{};
 
     public:
         Parse(int ac, char **av);

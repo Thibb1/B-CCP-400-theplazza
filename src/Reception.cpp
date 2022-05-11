@@ -32,8 +32,10 @@ void Reception::run()
         bool error = ParseCommand(line);
         if (RegUtils::isMatch(line, "QUIT", std::regex::icase)) {
             return;
+        } else if (RegUtils::isMatch(line, "status", std::regex::icase)) {
+            PrintKitchenStatus();
         } else if (error) {
-            std::cout << "ERROR: Wrong pizza command" << std::endl;
+        std::cout << "ERROR: Wrong pizza command" << std::endl;
         }
         std::cout << "> ";
     }
@@ -79,6 +81,16 @@ void Reception::StartReception(std::string pizza, std::string size, const std::s
     auto _size = static_cast<PizzaSize>(PizzaSizes[size]);
     std::cout << "Size: " << _size << std::endl;
     Pizza a(_type, _size);
+
+    SendPizzaToKitchen(a);
+}
+
+void Reception::SendPizzaToKitchen(Pizza pizza) {
+
+}
+
+void Reception::PrintKitchenStatus() {
+    std::cout << "Status" << std::endl;
 }
 
 }

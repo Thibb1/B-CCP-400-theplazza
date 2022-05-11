@@ -14,7 +14,7 @@ Process::Process() : pid(fork()) {
         throw PlazzaRuntimeError();
 }
 
-pid_t Process::GetPid() {
+pid_t Process::GetPid() const {
     return pid;
 }
 

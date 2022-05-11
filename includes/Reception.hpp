@@ -18,6 +18,8 @@ class Reception : public Parse {
         bool ParseCommand(const std::string& line);
         static void StartReception(std::string pizza, std::string size, const std::string& number);
         void run();
+        static void SendPizzaToKitchen(Pizza pizza);
+        void PrintKitchenStatus();
 };
 
 }

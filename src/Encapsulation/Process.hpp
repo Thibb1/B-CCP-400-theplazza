@@ -16,12 +16,12 @@ namespace plazza {
 class Process {
     public:
         pid_t pid;
-        int status;
+        int status{};
 
     public:
         Process();
         virtual ~Process() = default;
-        pid_t GetPid();
+        pid_t GetPid() const;
         void WaitPid();
 };
 
