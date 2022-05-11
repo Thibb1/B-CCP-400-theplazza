@@ -73,24 +73,43 @@ bool Reception::ParseCommand(const std::string& line) {
 void Reception::StartReception(std::string pizza, std::string size, const std::string &number)
 {
     std::transform(pizza.begin(), pizza.end(), pizza.begin(), ::tolower);
-    std::cout << "Pizza: " << pizza << std::endl;
-    std::cout << "Size: " << size << std::endl;
-    std::cout << "Number: " << number << std::endl;
+    std::cout << "Order placed: " << pizza << ", " << size << ", " << number << std::endl;
     auto _type = static_cast<PizzaType>(PizzaTypes[pizza]);
-    std::cout << "Type: " << _type << std::endl;
     auto _size = static_cast<PizzaSize>(PizzaSizes[size]);
-    std::cout << "Size: " << _size << std::endl;
     Pizza a(_type, _size);
 
     SendPizzaToKitchen(a);
 }
 
 void Reception::SendPizzaToKitchen(Pizza pizza) {
-
+    // get kitchen ID of an open kitchen
+    auto id = GetFreeKitchen();
+    // Send a message with pizza type and kitchen ID
+    // R(order) -> K
+    // K(bool) -> R (if no resp create a K?)
 }
 
 void Reception::PrintKitchenStatus() {
     std::cout << "Status" << std::endl;
+    // Read each kitchen data via a message (maybe needs a lock)
+    // R(info?) -> K
+    // K(infos) -> R
+    // Print infos
+}
+
+int Reception::GetFreeKitchen() {
+    // Read each kitchen if free cook (maybe needs a lock)
+    // Maybe get a message or smth
+    // R(free cooks?) -> K
+    // K(bool) -> R
+    // If nothing found fork and return ID of that fork
+    // auto id = GetNewKitchen();
+    return 0;
+}
+
+int Reception::GetNewKitchen() {
+    // Create a new kitchen after a fork and return its ID
+    return 0;
 }
 
 }

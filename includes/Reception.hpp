@@ -20,6 +20,10 @@ class Reception : public Parse {
         void run();
         static void SendPizzaToKitchen(Pizza pizza);
         void PrintKitchenStatus();
+
+        static int GetFreeKitchen();
+
+        static int GetNewKitchen();
 };
 
 }
