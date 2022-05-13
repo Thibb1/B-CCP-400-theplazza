@@ -8,7 +8,7 @@
 #include "ThreadPool.hpp"
 
 ThreadPool::ThreadPool() : concurrency(std::thread::hardware_concurrency()), threads(concurrency), running(true) {
-    createWorkers();
+    CreateWorkers();
 }
 
 ThreadPool::~ThreadPool()
@@ -21,4 +21,26 @@ ThreadPool::~ThreadPool()
             thread.join();
         }
     }
+}
+
+void ThreadPool::WorkerRoutine() {
+    std::function<void()> task;
+
+    while (running) {
+        if (tasks.tryPop(task)) {
+            task();
+        } else {
+            std::unique_lock<std::mutex> lock(this->mutex);
+            if (running) {
+                this->condition_variable.wait(lock);
+            }  
+        }
+    }
+}
+
+void ThreadPool::CreateWorkers() {
+    std::function<void()> task;
+
+    
+     
 }

@@ -28,8 +28,8 @@ class ThreadPool {
     public:
         ThreadPool();
         ~ThreadPool();
-        void createWorkers();
-        void workerRoutine();
+        void CreateWorkers();
+        void WorkerRoutine();
 
         template<class Function, class... Args>
         void run(Function&& f, Args&&... args);
