@@ -109,7 +109,8 @@ int Reception::GetFreeKitchen() {
 
 int Reception::GetNewKitchen() {
     // Create a new kitchen after a fork and return its ID
-    return 0;
+    Kitchen newKitchen(++kitchens, CookingTime, Cooks, RefillTime);
+    return kitchens;
 }
 
 }

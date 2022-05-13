@@ -7,6 +7,18 @@
 
 #include "Kitchen.hpp"
 
-Kitchen::Kitchen()
-{ 
+namespace plazza {
+    Kitchen::Kitchen(int id, double CookingTime, long Cooks, long RefillTime)
+    : id(id), CookingTime(CookingTime), Cooks(Cooks), RefillTime(RefillTime) {
+        process = new Process();
+        mutex = new Mutex;
+        if (process->GetPid() == 0) {
+            Start();
+        }
+        process->WaitPid();
+    }
+
+    void Kitchen::Start() {
+        ThreadPool pool;
+    }
 }

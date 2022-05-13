@@ -9,6 +9,9 @@
 #define THREADPOOL_HPP_
 
 #include <atomic>
+#include <vector>
+#include <functional>
+#include "SafeQueue.hpp"
 #include "Thread.hpp"
 #include "Mutex.hpp"
 #include "ConditionalVariable.hpp"

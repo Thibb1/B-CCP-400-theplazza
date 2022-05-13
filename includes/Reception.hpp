@@ -9,6 +9,7 @@
 
 #include "Parse.hpp"
 #include "RegexUtils.hpp"
+#include "Kitchen.hpp"
 
 namespace plazza {
 
@@ -23,7 +24,10 @@ class Reception : public Parse {
 
         static int GetFreeKitchen();
 
-        static int GetNewKitchen();
+        int GetNewKitchen();
+
+    private:
+        int kitchens{};
 };
 
 }

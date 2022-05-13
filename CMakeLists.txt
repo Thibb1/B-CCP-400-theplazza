@@ -5,6 +5,7 @@ add_compile_options(-Wall -Wextra -fpermissive)
 add_executable(plazza
         src/Main.cpp
         src/Pizza.cpp
+        src/Kitchen.cpp
         src/RegexUtils.cpp
         src/Parse.cpp
         src/Encapsulation/ConditionalVariable.cpp

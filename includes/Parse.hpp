@@ -10,7 +10,7 @@
 #include "Plazza.hpp"
 
 class Parse {
-    private:
+    protected:
         double CookingTime{};
         long Cooks{};
         long RefillTime{};
