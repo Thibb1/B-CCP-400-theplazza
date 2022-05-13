@@ -7,8 +7,26 @@
 
 #pragma once
 
-class Kitchen {
+#include <vector>
+
+#include "Process.hpp"
+#include "Mutex.hpp"
+#include "Thread.hpp"
+#include "ThreadPool.hpp"
+
+namespace plazza {
+    class Kitchen {
     public:
-        Kitchen();
+        Kitchen(int id, double CookingTime, long Cooks, long RefillTime);
         virtual ~Kitchen() = default;
-};
+        void Start();
+
+    private:
+        int id;
+        Process *process;
+        Mutex *mutex;
+        double CookingTime;
+        long Cooks;
+        long RefillTime;
+    };
+}

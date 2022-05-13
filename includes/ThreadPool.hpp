@@ -9,6 +9,9 @@
 #define THREADPOOL_HPP_
 
 #include <atomic>
+#include <vector>
+#include <functional>
+#include "SafeQueue.hpp"
 #include "Thread.hpp"
 #include "Mutex.hpp"
 #include "ConditionalVariable.hpp"
@@ -26,8 +29,8 @@ class ThreadPool {
         ConditionalVariable _conditionalVariable;
 
     public:
-        ThreadPool();
-        ~ThreadPool();
+        ThreadPool() = default;
+        virtual ~ThreadPool() = default;
         void createWorkers();
         void workerRoutine();
 
