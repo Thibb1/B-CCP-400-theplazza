@@ -40,7 +40,13 @@ void ThreadPool::WorkerRoutine() {
 
 void ThreadPool::CreateWorkers() {
     std::function<void()> task;
+    for (size_t i = 0; i < this->concurrency; ++i) {
+        this->threads.emplace_back(&ThreadPool::workerRoutine, this);
+    }
+}
 
-    
-     
+template<class Function, class... Args>
+void ThreadPool::run(Function &&function, Args&&... args) {
+    this->tasks.push(std::bind(std::forward<Function>(function), std::forward<Args>(args)...));
+    this->condition_variable.notify_one();
 }

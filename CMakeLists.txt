@@ -12,6 +12,7 @@ add_executable(plazza
         src/Encapsulation/Mutex.cpp
         src/Encapsulation/Process.cpp
         src/Encapsulation/Thread.cpp
+        src/ThreadPool.cpp
         src/Reception.cpp)
 target_include_directories(plazza PUBLIC includes src/Encapsulation)
 set_property(DIRECTORY APPEND PROPERTY ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_SOURCE_DIR}/plazza)
