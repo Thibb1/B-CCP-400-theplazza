@@ -9,9 +9,9 @@
 #include "Logger.hpp"
 
 namespace plazza {
-    double Core::mMultiplier = 0;
+    double Core::mCoookingTime = 0;
     long Core::mCooks = 0;
-    long Core::mReplaceTime = 0;
+    long Core::mRefillTime = 0;
 
     void Core::addPizza(const sPizza &pizza) {
         mReception.mMutex.lock();
@@ -19,10 +19,10 @@ namespace plazza {
         mReception.mMutex.unlock();
     }
 
-    void Core::start(double multiplier, long cooks, long replaceTime) {
-        mMultiplier = multiplier;
+    void Core::start(double cookingTime, long cooks, long refillTime) {
+        mCoookingTime = cookingTime;
         mCooks = cooks;
-        mReplaceTime = replaceTime;
+        mRefillTime = refillTime;
 
         std::thread threadManager(ThreadManager, std::ref(mReception), std::ref(threads), std::ref(vOrders),
                                   std::ref(mDbMutex), std::ref(mKitchensAlive));
@@ -40,7 +40,7 @@ namespace plazza {
         return smallest;
     }
 
-    void Core::loop() {
+    void Core::run() {
         mReception.mMutex.lock();
         for (auto &in: mReception.pizzaIn)
             log("[RECEPTION] New order: ", revMapPizzaType[in->getType()], " ", revMapPizzaSize[in->getSize()], "\n");
@@ -78,13 +78,13 @@ namespace plazza {
 
     [[noreturn]] void Core::IngredientManager(std::vector<sOrders> &kitchenOrders, std::mutex &dbMutex) {
         while (true) {
-            std::chrono::milliseconds duration(Core::mReplaceTime);
+            std::chrono::milliseconds duration(Core::mRefillTime);
             std::this_thread::sleep_for(duration);
             for (auto &orders: kitchenOrders) {
                 orders->mMutex.lock();
                 dbMutex.lock();
-                for (size_t i = 0; i < 9; i++)
-                    orders->ingredients[i] += 1;
+                for (auto &ingredient: orders->ingredients)
+                    ingredient += 1;
                 orders->mMutex.unlock();
                 dbMutex.unlock();
             }

@@ -62,8 +62,8 @@ namespace plazza
         Core() = default;
         ~Core() = default;
         void addPizza(const sPizza &pizza);
-        void start(double multiplier, long cooks, long replaceTime);
-        void loop();
+        void start(double cookingTime, long cooks, long refillTime);
+        void run();
 
         [[nodiscard]] inline const auto &getReception() const noexcept {return mReception;};
         [[nodiscard]] inline const auto &getOrders() const noexcept {return vOrders;};
@@ -72,9 +72,9 @@ namespace plazza
         [[noreturn]] static void IngredientManager(std::vector<sOrders> &kitchenOrders, std::mutex &dbMutex);
         static int emptiestKitchen(std::vector<sOrders> &database);
 
-        static double mMultiplier;
+        static double mCoookingTime;
         static long mCooks;
-        static long mReplaceTime;
+        static long mRefillTime;
 
         mutable std::mutex mDbMutex{};
 

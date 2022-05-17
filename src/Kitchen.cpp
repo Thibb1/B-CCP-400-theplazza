@@ -5,8 +5,8 @@
 ** cook thread and kitchen thread
 */
 
-#include "Core.hpp"
 #include <chrono>
+#include "Core.hpp"
 
 using namespace std::chrono_literals;
 
@@ -27,7 +27,7 @@ namespace plazza {
         while (!enoughIngredients(database, pizza));
 
         sysClock::time_point deadline =
-                sysClock::now() + std::chrono::microseconds(int(Core::mMultiplier * 1000000 * cookingTime));
+                sysClock::now() + std::chrono::microseconds(int(Core::mCoookingTime * 1000000 * cookingTime));
         while (sysClock::now() < deadline);
         reception.mMutex.lock();
         reception.pizzaOut.push_back(pizza);

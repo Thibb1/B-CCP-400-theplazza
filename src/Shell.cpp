@@ -17,16 +17,15 @@ namespace plazza {
         int i = 0;
         mCore.getReception().mMutex.lock();
         mCore.mDbMutex.lock();
-        log("[STATUS]\nOpened kitchens: ", mCore.getOrders().size(), "\n");
+        log("[STATUS]\nActive kitchens: ", mCore.getOrders().size(), "\n");
         for (const auto &kitchen: mCore.getOrders())
             log("  Working cooks in kitchen ", i++, ": ", int(kitchen->nbCooks), "\n");
         int j = 0;
         for (const auto &kitchen: mCore.getOrders()) {
             log("Kitchen ", j++, ":\n");
             i = 0;
-            for (const auto &ingredient: kitchen->ingredients) {
-                log("  ", mapPizzaIngredients[i++], ": ", int (ingredient), "\n");
-            }
+            for (const auto &ingredient: kitchen->ingredients)
+                log("  ", mapPizzaIngredients[i++], ": ", int(ingredient), "\n");
         }
         mCore.getReception().mMutex.unlock();
         mCore.mDbMutex.unlock();
@@ -63,14 +62,14 @@ namespace plazza {
         }
     }
 
-    bool Shell::ParseCommand(const std::string& line) {
+    bool Shell::ParseCommand(const std::string &line) {
         std::string input = RegUtils::removeSpaces(line);
         vString commands = RegUtils::split(input, "; ?");
 
         if (commands.empty())
             return true;
 
-        for (auto &command : commands) {
+        for (auto &command: commands) {
 
             if (command.empty())
                 return true;
@@ -80,9 +79,8 @@ namespace plazza {
             if (orders.size() != 3)
                 return true;
 
-            if (!RegUtils::isMatch(orders[0], "Regina|Margarita|Americana|Fantasia", std::regex::icase)
-                || !RegUtils::isMatch(orders[1], "S|M|L|XL|XXL")
-                || !RegUtils::isMatch(orders[2], "x[1-9]\\d*"))
+            if (!RegUtils::isMatch(orders[0], "Regina|Margarita|Americana|Fantasia", std::regex::icase) ||
+                !RegUtils::isMatch(orders[1], "S|M|L|XL|XXL") || !RegUtils::isMatch(orders[2], "x[1-9]\\d*"))
                 return true;
 
             std::string number = RegUtils::getMatch(orders[2], "x([1-9]\\d*)")[1];
@@ -92,7 +90,7 @@ namespace plazza {
         return false;
     }
 
-    void Shell::AddOrder(std::string pizza, const std::string& size, int number) {
+    void Shell::AddOrder(std::string pizza, const std::string &size, int number) {
         std::transform(pizza.begin(), pizza.end(), pizza.begin(), ::tolower);
         for (int i = 0; i < number; i++)
             factory(mapPizzaType[pizza], mapPizzaSize[size]);
@@ -102,6 +100,6 @@ namespace plazza {
         for (auto &pizza: orderBuffer)
             mCore.addPizza(pizza);
         orderBuffer.clear();
-        mCore.loop();
+        mCore.run();
     }
 }
