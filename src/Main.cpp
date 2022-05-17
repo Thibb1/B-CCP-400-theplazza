@@ -1,24 +1,25 @@
 /*
 ** EPITECH PROJECT, 2022
-** Main.cpp
+** TODO.cpp
 ** File description:
-** main
+** TODO
 */
 
-#include "Plazza.hpp"
-#include <stdexcept>
-#include "Reception.hpp"
+#include <iostream>
+#include "Exceptions.hpp"
+#include "Shell.hpp"
 
-int main(int ac, char **av)
-{
+int main(int ac, char **av) {
     try {
-        plazza::Reception reception(ac, av);
-        reception.run();
-    } catch (PlazzaError &Error) {
-        std::cout << Error.what() << std::endl;
+        plazza::Shell app(ac, av);
+        app.run();
+    } catch (const plazza::PlazzaError &error) {
+        std::cerr << error.what() << std::endl;
         return EXIT_ERROR;
-    } catch(std::exception &Error) {
-        std::cout << "The Plazza terminated with an unhandled exception:\n" << Error.what() << std::endl;
+    } catch (const std::exception &exception) {
+        std::cerr << exception.what() << std::endl;
+        return EXIT_ERROR;
+    } catch (...) {
         return EXIT_ERROR;
     }
     return EXIT_SUCCESS;

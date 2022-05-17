@@ -1,43 +1,45 @@
 /*
 ** EPITECH PROJECT, 2022
-** B-CPP-400-LIL-4-1-theplazza
+** TODO.hpp
 ** File description:
-** ThreadPool
+** TODO
 */
 
-#ifndef THREADPOOL_HPP_
-#define THREADPOOL_HPP_
-
-#include <atomic>
-#include <vector>
-#include <functional>
-#include "SafeQueue.hpp"
-#include "Thread.hpp"
-#include "Mutex.hpp"
-#include "ConditionalVariable.hpp"
+#pragma once
 
 namespace plazza {
-
-class ThreadPool {
+    class ThreadPool {
+    private:
+        std::vector<std::thread> mThreads{};
     public:
-        size_t concurrency;
-        std::vector<std::thread> threads;
-        std::atomic_bool running;
-        Thread _thread;
-        Mutex _mutex;
-        SafeQueue<std::function<void()>> tasks;
-        ConditionalVariable _conditionalVariable;
+        ThreadPool() = default;
 
-    public:
-        ThreadPool();
-        ~ThreadPool();
-        void CreateWorkers();
-        void WorkerRoutine();
+        ThreadPool(const ThreadPool &) = delete;
 
-        template<class Function, class... Args>
-        void run(Function&& f, Args&&... args);
-};
+        ThreadPool(ThreadPool &&) = delete;
 
+        ThreadPool &operator=(const ThreadPool &) = delete;
+
+        ThreadPool &operator=(ThreadPool &&) = delete;
+
+        ~ThreadPool() {
+            release();
+        };
+
+        template<typename Function, typename ...Args>
+        void add(Function &&fn, Args &&...args) {
+            mThreads.emplace_back(std::forward<Function>(fn), std::forward<Args>(args)...);
+        }
+
+        void remove(size_t position) {
+            mThreads[position].join();
+            mThreads.erase(mThreads.begin() + long(position));
+        }
+
+        void release() {
+            for (auto &thread: mThreads)
+                thread.join();
+            mThreads.clear();
+        }
+    };
 }
-
-#endif /* !THREADPOOL_HPP_ */
