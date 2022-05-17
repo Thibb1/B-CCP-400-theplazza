@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** TODO.hpp
+** Pizza.hpp
 ** File description:
-** TODO
+** Pizza Classes and enums
 */
 
 #pragma once

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** TODO.cpp
+** Parse.cpp
 ** File description:
-** TODO
+** parse program arguments
 */
 
 #include "Parse.hpp"

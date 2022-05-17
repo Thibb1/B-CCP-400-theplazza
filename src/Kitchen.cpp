@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** TODO.cpp
+** Kitchen.cpp
 ** File description:
-** TODO
+** cook thread and kitchen thread
 */
 
 #include "Core.hpp"

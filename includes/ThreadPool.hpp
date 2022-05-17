@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** TODO.hpp
+** ThreadPool.hpp
 ** File description:
-** TODO
+** ThreadPool
 */
 
 #pragma once

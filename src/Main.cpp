@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** TODO.cpp
+** Main.cpp
 ** File description:
-** TODO
+** main
 */
 
 #include <iostream>

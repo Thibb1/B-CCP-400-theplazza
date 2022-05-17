@@ -2,24 +2,21 @@
 ** EPITECH PROJECT, 2022
 ** Parse.hpp
 ** File description:
-** parse program arguments
+** TODO
 */
 
 #pragma once
 
-#include "Exceptions.hpp"
+#include "Plazza.hpp"
 
-namespace plazza {
-    class Parse {
+class Parse {
     protected:
         double CookingTime{};
         long Cooks{};
         long RefillTime{};
+
     public:
         Parse(int ac, char **av);
-
         virtual ~Parse() = default;
-
         void CheckArguments(int ac, char **av);
-    };
-}
+};
