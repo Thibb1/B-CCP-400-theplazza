@@ -12,11 +12,16 @@
 #include <string_view>
 
 namespace plazza {
-    enum PizzaType {
-        Regina = 1, Margarita = 2, Americana = 4, Fantasia = 8
+    enum PizzaType
+    {
+        Regina = 1,
+        Margarita = 2,
+        Americana = 4,
+        Fantasia = 8
     };
 
-    enum PizzaIngredient {
+    enum PizzaIngredient
+    {
         Doe = 0,
         Tomato = 1,
         Gruyere = 2,
@@ -28,26 +33,27 @@ namespace plazza {
         ChiefLove = 8,
     };
 
-    enum PizzaSize {
-        S = 1, M = 2, L = 4, XL = 8, XXL = 16
+    enum PizzaSize
+    {
+        S = 1,
+        M = 2,
+        L = 4,
+        XL = 8,
+        XXL = 16
     };
 
     class IPizza {
-    protected:
-        int mCookingTime{};
-        PizzaSize mSize{};
-        PizzaType mType{};
-        std::vector<PizzaIngredient> mIngredients{};
-    public:
-        virtual ~IPizza() = default;
-
-        const PizzaType &getType() { return mType; };
-
-        const PizzaSize &getSize() { return mSize; };
-
-        [[nodiscard]] const int &getCookingTime() const { return mCookingTime; };
-
-        const std::vector<PizzaIngredient> &getIngredients() { return mIngredients; };
+        protected:
+            int mCookingTime{};
+            PizzaSize mSize{};
+            PizzaType mType{};
+            std::vector<PizzaIngredient> mIngredients{};
+        public:
+            virtual ~IPizza() = default;
+            const PizzaType &getType() { return mType; };
+            const PizzaSize &getSize() { return mSize; };
+            [[nodiscard]] const int &getCookingTime() const { return mCookingTime; };
+            const std::vector<PizzaIngredient> &getIngredients() { return mIngredients; };
     };
 
     class regina : public IPizza {

@@ -9,78 +9,67 @@
 
 #include <memory>
 #include <vector>
-#include <mutex>
 #include <thread>
 #include <atomic>
 #include <array>
 #include "Pizza.hpp"
 #include "ThreadPool.hpp"
+#include "Mutex.hpp"
 
-namespace plazza
-{
-    typedef std::shared_ptr<IPizza> sPizza;
-    typedef std::shared_ptr<bool> sBool;
-    typedef std::chrono::system_clock sysClock;
+namespace plazza {
 
-    class Reception
-    {
+class Reception {
     public:
         Reception() = default;
         ~Reception() = default;
-        mutable std::mutex mMutex;
-        std::vector<sPizza> pizzaIn{};
-        std::vector<sPizza> pizzaOut{};
-    };
+        Mutex mutex;
+        std::vector<std::shared_ptr<IPizza>> pizzaIn{};
+        std::vector<std::shared_ptr<IPizza>> pizzaOut{};
+};
 
-    class Orders
-    {
+class Orders {
     public:
         Orders() = default;
         ~Orders() = default;
-        void push(const sPizza &pizza)
-        {
-            mMutex.lock();
+
+        void push(const std::shared_ptr<IPizza> &pizza) {
+            mutex.Lock();
             pizzaBuffer.push_back(pizza);
-            mMutex.unlock();
+            mutex.Unlock();
             nbCooks++;
         };
         std::atomic<int> nbCooks{};
-        mutable std::mutex mMutex{};
-        std::vector<sPizza> pizzaBuffer{};
+        Mutex mutex{};
+        std::vector<std::shared_ptr<IPizza>> pizzaBuffer{};
         std::array<std::atomic<int>, 9> ingredients{5, 5, 5, 5, 5, 5, 5, 5, 5};
-    };
+};
 
-    typedef std::shared_ptr<Orders> sOrders;
-    class Core
-    {
+class Core {
     private:
-        Reception mReception{};
+        Reception reception{};
         ThreadPool threads{};
-        std::vector<sBool> mKitchensAlive{};
-        std::vector<sOrders> vOrders{};
+        std::vector<std::shared_ptr<bool>> mKitchensAlive{};
+        std::vector<std::shared_ptr<Orders>> vOrders{};
+
     public:
         Core() = default;
         ~Core() = default;
-        void addPizza(const sPizza &pizza);
+        void addPizza(const std::shared_ptr<IPizza> &pizza);
         void start(double cookingTime, long cooks, long refillTime);
         void run();
+        [[nodiscard]] inline const auto &getReception() const noexcept { return this->reception; };
+        [[nodiscard]] inline const auto &getOrders() const noexcept { return vOrders; };
+        [[noreturn]] static void ThreadManager(Reception &reception, ThreadPool &pool, std::vector<std::shared_ptr<Orders>> &database, std::mutex &dbMutex, std::vector<std::shared_ptr<bool>> &kitchensAlive);
+        [[noreturn]] static void IngredientManager(std::vector<std::shared_ptr<Orders>> &kitchenOrders, std::mutex &dbMutex);
+        static int emptiestKitchen(std::vector<std::shared_ptr<Orders>> &database);
+        static double CoookingTime;
+        static long Cooks;
+        static long RefillTime;
+        Mutex dbMutex{};
+        void addOrderToKitchen(std::shared_ptr<IPizza> &pizza);
+};
 
-        [[nodiscard]] inline const auto &getReception() const noexcept {return mReception;};
-        [[nodiscard]] inline const auto &getOrders() const noexcept {return vOrders;};
+void kitchenThread(const std::shared_ptr<bool> &alive, plazza::Reception &reception, std::shared_ptr<Orders> orders);
+void cookThread(const std::shared_ptr<bool> &alive, plazza::Reception &reception, const std::shared_ptr<Orders> &database, const std::shared_ptr<IPizza> &pizza);
 
-        [[noreturn]] static void ThreadManager(Reception &reception, ThreadPool &pool, std::vector<sOrders> &database, std::mutex &dbMutex, std::vector<sBool> &kitchensAlive);
-        [[noreturn]] static void IngredientManager(std::vector<sOrders> &kitchenOrders, std::mutex &dbMutex);
-        static int emptiestKitchen(std::vector<sOrders> &database);
-
-        static double mCoookingTime;
-        static long mCooks;
-        static long mRefillTime;
-
-        mutable std::mutex mDbMutex{};
-
-        void addOrderToKitchen(sPizza &pizza);
-    };
-
-    void kitchenThread(const sBool& alive, plazza::Reception &reception, sOrders orders);
-    void cookThread(const sBool& alive, plazza::Reception &reception, const sOrders& database, const sPizza& pizza);
 }

@@ -11,24 +11,25 @@
 #include "Pizza.hpp"
 #include "Logger.hpp"
 #include "RegexUtils.hpp"
+#include "Mutex.hpp"
 
 namespace plazza {
     void Shell::status() const noexcept {
         int i = 0;
-        mCore.getReception().mMutex.lock();
-        mCore.mDbMutex.lock();
-        log("[STATUS]\nActive kitchens: ", mCore.getOrders().size(), "\n");
-        for (const auto &kitchen: mCore.getOrders())
+        this->core.getReception().mutex.Lock();
+        this->core.dbMutex.Lock();
+        log("[STATUS]\nActive kitchens: ", this->core.getOrders().size(), "\n");
+        for (const auto &kitchen: this->core.getOrders())
             log("  Working cooks in kitchen ", i++, ": ", int(kitchen->nbCooks), "\n");
         int j = 0;
-        for (const auto &kitchen: mCore.getOrders()) {
+        for (const auto &kitchen: this->core.getOrders()) {
             log("Kitchen ", j++, ":\n");
             i = 0;
             for (const auto &ingredient: kitchen->ingredients)
                 log("  ", mapPizzaIngredients[i++], ": ", int(ingredient), "\n");
         }
-        mCore.getReception().mMutex.unlock();
-        mCore.mDbMutex.unlock();
+        this->core.getReception().mutex.Unlock();
+        this->core.dbMutex.Unlock();
     }
 
     void Shell::factory(const PizzaType &pizzaType, const PizzaSize &pizzaSize) {
@@ -45,7 +46,7 @@ namespace plazza {
     }
 
     void Shell::run() {
-        mCore.start(CookingTime, Cooks, RefillTime);
+        this->core.start(CookingTime, Cooks, RefillTime);
         std::cout << "> ";
         std::string line;
         while (getline(std::cin, line)) {
@@ -98,8 +99,8 @@ namespace plazza {
 
     void Shell::ApplyOrders() {
         for (auto &pizza: orderBuffer)
-            mCore.addPizza(pizza);
+            this->core.addPizza(pizza);
         orderBuffer.clear();
-        mCore.run();
+        this->core.run();
     }
 }
