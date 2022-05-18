@@ -8,7 +8,6 @@ add_executable(plazza
         src/Kitchen.cpp
         src/Shell.cpp
         src/Parse.cpp
-        src/Encapsulation/ConditionalVariable.cpp
         src/Encapsulation/Mutex.cpp
         src/Encapsulation/Process.cpp
         src/Encapsulation/Thread.cpp

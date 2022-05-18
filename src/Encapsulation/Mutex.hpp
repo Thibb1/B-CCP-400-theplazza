@@ -14,7 +14,7 @@ namespace plazza {
 
 class Mutex {
     public:
-        std::unique_lock<std::mutex> mutex;
+        std::mutex mutex;
 
     public:
         Mutex() = default;

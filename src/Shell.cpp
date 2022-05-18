@@ -11,13 +11,12 @@
 #include "Pizza.hpp"
 #include "Logger.hpp"
 #include "RegexUtils.hpp"
-#include "Mutex.hpp"
 
 namespace plazza {
     void Shell::status() const noexcept {
         int i = 0;
-        this->core.getReception().mutex.Lock();
-        this->core.dbMutex.Lock();
+        core.getReception().mutex.Lock();
+        core.dbMutex.Lock();
         log("[STATUS]\nActive kitchens: ", this->core.getOrders().size(), "\n");
         for (const auto &kitchen: this->core.getOrders())
             log("  Working cooks in kitchen ", i++, ": ", int(kitchen->nbCooks), "\n");
@@ -28,8 +27,8 @@ namespace plazza {
             for (const auto &ingredient: kitchen->ingredients)
                 log("  ", mapPizzaIngredients[i++], ": ", int(ingredient), "\n");
         }
-        this->core.getReception().mutex.Unlock();
-        this->core.dbMutex.Unlock();
+        core.getReception().mutex.Unlock();
+        core.dbMutex.Unlock();
     }
 
     void Shell::factory(const PizzaType &pizzaType, const PizzaSize &pizzaSize) {

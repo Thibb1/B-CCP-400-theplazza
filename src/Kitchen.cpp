@@ -10,8 +10,8 @@
 #include "Mutex.hpp"
 
 using namespace std::chrono_literals;
-bool enoughIngredients(const std::shared_ptr<plazza::Orders> &orders, const std::shared_ptr<plazza::IPizza> &pizza) {
-    std::scoped_lock scopedLock(orders->mutex);
+bool enoughIngredients(const plazza::sOrders &orders, const plazza::sPizza &pizza) {
+    std::scoped_lock scopedLock(orders->mutex.mutex);
 
     for (const auto &ingredient: pizza->getIngredients())
         if (orders->ingredients[int(ingredient)] <= 0)
@@ -24,12 +24,12 @@ bool enoughIngredients(const std::shared_ptr<plazza::Orders> &orders, const std:
 }
 
 namespace plazza {
-    void cookThread(const std::shared_ptr<bool> &alive, Reception &reception, const std::shared_ptr<Orders> &database, const std::shared_ptr<IPizza> &pizza) {
+    void cookThread(const sBool &alive, Reception &reception, const sOrders &database, const sPizza &pizza) {
         auto cookingTime = float(pizza->getCookingTime());
 
         while (!enoughIngredients(database, pizza));
 
-        std::chrono::system_clock::time_point deadline = std::chrono::system_clock::now() + std::chrono::microseconds(int(Core::CoookingTime * 1000000 * cookingTime));
+        std::chrono::system_clock::time_point deadline = std::chrono::system_clock::now() + std::chrono::microseconds(int(Core::CookingTime * 1000000 * cookingTime));
         while (std::chrono::system_clock::now() < deadline);
         reception.mutex.Lock();
         reception.pizzaOut.push_back(pizza);
@@ -38,9 +38,9 @@ namespace plazza {
         *alive = false;
     }
 
-    void kitchenThread(const std::shared_ptr<bool> &alive, Reception &reception, std::shared_ptr<Orders> orders) {
+    void kitchenThread(const sBool &alive, Reception &reception, sOrders orders) {
         ThreadPool cooks;
-        std::vector<std::shared_ptr<bool>> cooksStatus;
+        std::vector<sBool> cooksStatus;
         std::chrono::system_clock::time_point deadline = std::chrono::system_clock::now() + std::chrono::seconds(5);
         while (true) {
             if (std::chrono::system_clock::now() >= deadline) {

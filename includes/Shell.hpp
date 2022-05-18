@@ -17,7 +17,7 @@ namespace plazza {
     class Shell : public Parse {
     private:
         Core core{};
-        std::vector<std::shared_ptr<IPizza>> orderBuffer{};
+        std::vector<sPizza> orderBuffer{};
     public:
         Shell(int ac, char **av) : Parse(ac, av) {};
         ~Shell() override = default;
