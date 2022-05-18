@@ -15,12 +15,14 @@
 namespace plazza {
     void Shell::status() const noexcept {
         int i = 0;
+        int j = 0;
+
         core.getReception().mutex.Lock();
         core.dbMutex.Lock();
         log("Status>\n Active kitchens: ", this->core.getOrders().size(), "\n");
-        for (const auto &kitchen: this->core.getOrders())
+        for (const auto &kitchen: this->core.getOrders()) {
             log("  Working cooks in kitchen ", i++, ": ", int(kitchen->nbCooks), "\n");
-        int j = 0;
+        }
         for (const auto &kitchen: this->core.getOrders()) {
             log("Kitchen ", j++, ":\n");
             i = 0;
@@ -32,22 +34,24 @@ namespace plazza {
     }
 
     void Shell::factory(const PizzaType &pizzaType, const PizzaSize &pizzaSize) {
-        if (pizzaType == Regina)
+        if (pizzaType == Regina) {
             orderBuffer.push_back(std::make_shared<regina>(pizzaSize));
-        else if (pizzaType == Margarita)
+        } else if (pizzaType == Margarita) {
             orderBuffer.push_back(std::make_shared<margarita>(pizzaSize));
-        else if (pizzaType == Americana)
+        } else if (pizzaType == Americana) {
             orderBuffer.push_back(std::make_shared<americana>(pizzaSize));
-        else if (pizzaType == Fantasia)
+        } else if (pizzaType == Fantasia) {
             orderBuffer.push_back(std::make_shared<fantasia>(pizzaSize));
-        else
+        } else {
             throw PlazzaBadCommand();
+        }
     }
 
     void Shell::run() {
         this->core.start(CookingTime, Cooks, RefillTime);
         std::cout << "> ";
         std::string line;
+
         while (getline(std::cin, line)) {
             if (RegUtils::isMatch(line, "QUIT", std::regex::icase)) {
                 return;
@@ -66,25 +70,22 @@ namespace plazza {
         std::string input = RegUtils::removeSpaces(line);
         vString commands = RegUtils::split(input, "; ?");
 
-        if (commands.empty())
+        if (commands.empty()) {
             return true;
-
+        }
         for (auto &command: commands) {
-
-            if (command.empty())
+            if (command.empty()) {
                 return true;
-
+            }
             vString orders = RegUtils::split(command, " ");
-
-            if (orders.size() != 3)
+            if (orders.size() != 3) {
                 return true;
-
+            }
             if (!RegUtils::isMatch(orders[0], "Regina|Margarita|Americana|Fantasia", std::regex::icase) ||
-                !RegUtils::isMatch(orders[1], "S|M|L|XL|XXL") || !RegUtils::isMatch(orders[2], "x[1-9]\\d*"))
+                !RegUtils::isMatch(orders[1], "S|M|L|XL|XXL") || !RegUtils::isMatch(orders[2], "x[1-9]\\d*")) {
                 return true;
-
+            }
             std::string number = RegUtils::getMatch(orders[2], "x([1-9]\\d*)")[1];
-
             AddOrder(orders[0], orders[1], std::stoi(number));
         }
         return false;
@@ -92,13 +93,15 @@ namespace plazza {
 
     void Shell::AddOrder(std::string pizza, const std::string &size, int number) {
         std::transform(pizza.begin(), pizza.end(), pizza.begin(), ::tolower);
-        for (int i = 0; i < number; i++)
+        for (int i = 0; i < number; i++) {
             factory(mapPizzaType[pizza], mapPizzaSize[size]);
+        }
     }
 
     void Shell::ApplyOrders() {
-        for (auto &pizza: orderBuffer)
+        for (auto &pizza: orderBuffer) {
             this->core.addPizza(pizza);
+        }
         orderBuffer.clear();
         this->core.run();
     }

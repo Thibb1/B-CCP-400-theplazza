@@ -26,8 +26,7 @@ namespace plazza {
         Cooks = cooks;
         RefillTime = refillTime;
 
-        std::thread threadManager(ThreadManager, std::ref(reception), std::ref(threads), std::ref(vOrders),
-                                  std::ref(dbMutex), std::ref(mKitchensAlive));
+        std::thread threadManager(ThreadManager, std::ref(reception), std::ref(threads), std::ref(vOrders), std::ref(dbMutex), std::ref(mKitchensAlive));
         threadManager.detach();
         std::thread ingredientsManager(IngredientManager, std::ref(vOrders), std::ref(dbMutex));
         ingredientsManager.detach();
@@ -36,29 +35,30 @@ namespace plazza {
     inline int Core::emptiestKitchen(std::vector<sOrders> &database) {
         int smallest = int(Core::Cooks);
 
-        for (const auto &kitchen: database)
-            if (kitchen->nbCooks < smallest)
+        for (const auto &kitchen: database) {
+            if (kitchen->nbCooks < smallest) {
                 smallest = kitchen->nbCooks;
+            }
+        }
         return smallest;
     }
 
     void Core::run() {
         this->reception.mutex.Lock();
-
-        for (auto &in: this->reception.pizzaIn)
+        for (auto &in: this->reception.pizzaIn) {
             log("Reception> New order: ", revMapPizzaType[in->getType()], " ", revMapPizzaSize[in->getSize()], "\n");
-
-        for (auto &pizza: this->reception.pizzaIn)
+        }
+        for (auto &pizza: this->reception.pizzaIn) {
             addOrderToKitchen(pizza);
-
+        }
         this->reception.pizzaIn.clear();
         this->reception.mutex.Unlock();
     }
 
     [[noreturn]] void
-    Core::ThreadManager(Reception &reception, ThreadPool &pool, std::vector<sOrders> &database,
-                        Mutex &dbMutex, std::vector<sBool> &kitchensAlive) {
+    Core::ThreadManager(Reception &reception, ThreadPool &pool, std::vector<sOrders> &database, Mutex &dbMutex, std::vector<sBool> &kitchensAlive) {
         using namespace std::chrono_literals;
+
         while (true) {
             std::this_thread::sleep_for(0.1s);
             reception.mutex.Lock();
@@ -72,8 +72,9 @@ namespace plazza {
                     i = 0;
                 }
             }
-            for (auto &out: reception.pizzaOut)
+            for (auto &out: reception.pizzaOut) {
                 log("Reception> Order ready: ", revMapPizzaType[out->getType()], " ", revMapPizzaSize[out->getSize()], "\n");
+            }
             reception.pizzaOut.clear();
             reception.mutex.Unlock();
             dbMutex.Unlock();

@@ -42,6 +42,7 @@ namespace plazza {
         ThreadPool cooks;
         std::vector<sBool> cooksStatus;
         std::chrono::system_clock::time_point deadline = std::chrono::system_clock::now() + std::chrono::seconds(5);
+        
         while (true) {
             if (std::chrono::system_clock::now() >= deadline) {
                 cooks.release();
