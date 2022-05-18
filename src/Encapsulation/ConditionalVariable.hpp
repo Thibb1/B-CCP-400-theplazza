@@ -14,7 +14,7 @@ namespace plazza {
 
 class ConditionalVariable {
     public:
-        Mutex _mutex;
+        Mutex mutex;
         std::condition_variable conditionVariable;
 
     public:

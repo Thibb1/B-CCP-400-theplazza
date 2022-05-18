@@ -8,7 +8,7 @@
 #pragma once
 
 #include <unistd.h>
-#include "PlazzaError.hpp"
+#include "Exceptions.hpp"
 #include <sys/wait.h>
 
 namespace plazza {

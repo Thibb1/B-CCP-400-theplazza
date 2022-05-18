@@ -11,7 +11,7 @@ namespace plazza {
 
 Process::Process() : pid(fork()) {
     if (pid < 0)
-        throw PlazzaRuntimeError();
+        throw PlazzaUsageError();
 }
 
 pid_t Process::GetPid() const {

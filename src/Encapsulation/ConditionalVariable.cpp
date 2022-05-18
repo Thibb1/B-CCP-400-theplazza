@@ -18,8 +18,8 @@ void ConditionalVariable::NotifyAll() {
 }
 
 void ConditionalVariable::Wait() {
-    _mutex.Lock();
-    conditionVariable.wait(_mutex.mutex);
+    this->mutex.Lock();
+    conditionVariable.wait(this->mutex.mutex);
 }
 
 }
