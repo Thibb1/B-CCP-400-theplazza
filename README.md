@@ -143,6 +143,12 @@ cmake .. -G "Unix Makefiles"
 cmake --build .
 ```
 
+## Bonus
+```
+/bonus/
+
+generic thread pool using a safe queue and variadic functions
+```
 
 > You must ask yourself as early as possible how to represent time. This can save you lots
 
