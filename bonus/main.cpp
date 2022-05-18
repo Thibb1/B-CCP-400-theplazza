@@ -69,9 +69,9 @@ void ThreadPool::run(Function &&function, Args&&... args) {
     this->condition_variable.notify_one();
 }
 
-/* int main() {
+int main() {
     ThreadPool pool;
 
     pool.run([] (const std::string &message) { std::cout << message << std::endl; }, "hello !");
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
-} */
+}
