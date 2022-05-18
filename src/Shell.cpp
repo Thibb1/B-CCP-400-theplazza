@@ -17,7 +17,7 @@ namespace plazza {
         int i = 0;
         core.getReception().mutex.Lock();
         core.dbMutex.Lock();
-        log("[STATUS]\nActive kitchens: ", this->core.getOrders().size(), "\n");
+        log("Status>\n Active kitchens: ", this->core.getOrders().size(), "\n");
         for (const auto &kitchen: this->core.getOrders())
             log("  Working cooks in kitchen ", i++, ": ", int(kitchen->nbCooks), "\n");
         int j = 0;

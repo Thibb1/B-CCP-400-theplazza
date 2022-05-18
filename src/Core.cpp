@@ -46,7 +46,7 @@ namespace plazza {
         this->reception.mutex.Lock();
 
         for (auto &in: this->reception.pizzaIn)
-            log("[RECEPTION] New order: ", revMapPizzaType[in->getType()], " ", revMapPizzaSize[in->getSize()], "\n");
+            log("Reception> New order: ", revMapPizzaType[in->getType()], " ", revMapPizzaSize[in->getSize()], "\n");
 
         for (auto &pizza: this->reception.pizzaIn)
             addOrderToKitchen(pizza);
@@ -68,13 +68,12 @@ namespace plazza {
                     pool.remove(i);
                     kitchensAlive.erase(kitchensAlive.begin() + long(i));
                     database.erase(database.begin() + long(i));
-                    log("[THREAD] a kitchen closed (thread killed)\n");
+                    log("Thread Manager> a kitchen has been closed\n");
                     i = 0;
                 }
             }
             for (auto &out: reception.pizzaOut)
-                log("[RECEPTION] Order ready: ", revMapPizzaType[out->getType()], " ", revMapPizzaSize[out->getSize()],
-                    "\n");
+                log("Reception> Order ready: ", revMapPizzaType[out->getType()], " ", revMapPizzaSize[out->getSize()], "\n");
             reception.pizzaOut.clear();
             reception.mutex.Unlock();
             dbMutex.Unlock();
