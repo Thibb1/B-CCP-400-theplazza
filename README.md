@@ -130,6 +130,20 @@ You MUST manage the follwing pizzas:
 - _Americana_: Contains doe, tomato, gruyere, steak. Baked in **2 secs * multiplier**.
 - _Fantasia_: Contains doe, tomato, eggplant, goat cheese and chief love. Baked in **4 secs * multiplier**.
 
+## Compilation
+
+- Makefile
+```
+make
+```
+- CMake
+```
+mkdir build && cd build
+cmake .. -G "Unix Makefiles"
+cmake --build .
+```
+
+
 > You must ask yourself as early as possible how to represent time. This can save you lots
 
 > Being able to add new pizzas very simply (abstraction?) is a very easy bonus to get.
